@@ -1,0 +1,6 @@
+devel_space: /home/ros-industrial/realsense_gazebo_plugin/devel
+install: false
+install_space: /home/ros-industrial/realsense_gazebo_plugin/install
+profile: default
+source_space: /home/ros-industrial/realsense_gazebo_plugin/src
+workspace: /home/ros-industrial/realsense_gazebo_plugin

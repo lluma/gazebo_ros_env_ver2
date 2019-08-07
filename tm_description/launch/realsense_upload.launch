@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<launch>
+  <param name="realsense_description" command="$(find xacro)/xacro.py '$(find realsense_gazebo_plugin)/urdf/rs200_simulation.xacro'" />
+</launch>

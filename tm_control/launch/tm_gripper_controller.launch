@@ -1,0 +1,4 @@
+<?xml version="1.0" ?>
+<launch>
+  <node name="tm_gripper_controller_spawner" pkg="tm_control" type="tm_control" output="screen"/>
+</launch>

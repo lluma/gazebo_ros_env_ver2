@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="tm_arm_gazebo" params="prefix">
+
+<!--    <gazebo>-->
+<!--      <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">-->
+<!--        <robotNamespace></robotNamespace>-->
+<!--        <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>-->
+<!--        <legacyModeNS>true</legacyModeNS>-->
+<!--      </plugin>-->
+<!--    </gazebo>-->
+
+    <gazebo reference="${prefix}base_link">
+      <gravity>0</gravity>
+      <selfCollide>true</selfCollide>      
+    </gazebo>
+    <gazebo reference="${prefix}shoulder_1_link">
+      <gravity>0</gravity>
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <gazebo reference="${prefix}arm_1_link">
+      <gravity>0</gravity>
+      <selfCollide>true</selfCollide>      
+    </gazebo>
+    <gazebo reference="${prefix}arm_2_link">
+      <gravity>0</gravity>
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <gazebo reference="${prefix}wrist_1_link">
+      <gravity>0</gravity>
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <gazebo reference="${prefix}wrist_2_link">
+      <gravity>0</gravity>
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <gazebo reference="${prefix}wrist_3_link">
+      <gravity>0</gravity>
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <gazebo reference="${prefix}gripper_link">
+      <gravity>0</gravity>
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <gazebo reference="${prefix}finger_r_link">
+      <gravity>0</gravity>
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <gazebo reference="${prefix}finger_l_link">
+      <gravity>0</gravity>
+      <selfCollide>true</selfCollide>
+    </gazebo>
+  </xacro:macro>
+
+</robot>

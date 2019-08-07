@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="limited" default="false"/>
+  <arg name="eih" default="true"/>
+  <arg name="paused" default="false"/>
+  <arg name="gui" default="true"/>
+  
+  <!-- startup simulated world -->
+  <include file="$(find tm_gazebo)/launch/testing_env.launch">
+    <arg name="world_name" default="$(find tm_gazebo)/worlds/my_world.world"/>
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="gui" value="$(arg gui)"/>
+  </include>
+  
+  <!-- send robot urdf to param server -->
+  <include file="$(find tm_description)/launch/tm700_upload.launch">
+    <arg name="eih" value="$(arg eih)"/>
+    <arg name="limited" value="$(arg limited)"/>
+  </include>
+  
+  <!-- send realsense urdf to param server -->
+  <include file="$(find tm_description)/launch/realsense_upload.launch" />
+  
+  <!-- push realsense description to factory and spawn realsense in gazebo -->
+  <node name="spawn_realsense_model" pkg="gazebo_ros" type="spawn_model" args="-urdf -param realsense_description -model rs200 -x 1.15 -y 0 -z 1.52 -R 0 -P 0.5 -Y 3.1415926" respawn="false" output="screen" />
+  
+  <!-- push robot_description to factory and spawn robot in gazebo -->
+  <node name="spawn_gazebo_model" pkg="gazebo_ros" type="spawn_model" args="-urdf -param robot_description -model tm700 -x -0.15 -y 0 -z 0.778015" respawn="false" output="screen" />
+  
+  <include file="$(find tm_gazebo)/launch/controller_utils.launch"/>
+  
+  <rosparam file="$(find tm_gazebo)/controller/arm_controller_tm.yaml" command="load" />
+  <node name="arm_controller_spawner" pkg="controller_manager" type="controller_manager" args="spawn arm_controller finger_r_controller finger_l_controller" respawn="false" output="screen"/>
+  
+  <include file="$(find tm_control)/launch/tm_gripper_controller.launch" />
+</launch>
