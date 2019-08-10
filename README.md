@@ -124,21 +124,24 @@ You can input `open` and `close` commands to test gripper open and close actions
 #### At the very first time to use this gazebo_ros_controller, please follow the instructions below.
 1. Build up a ros environment (kinetic) well on your Ubuntu 16.04. You can build up with docker (Please check the README.md in ./catkin_ws/src/README.md in this repo.). Or you can also use images created by ROS fundation on Docker_Hub.
 
-2. Next, create a workspace.
-- `cd ~` 
-- `mkdir catkin_ws && cd catkin_ws`
+2. Next, copy the all the packages to the workspace if you have had. Otherwise please first follow the instructions noted with * to create a workspace.
 
-3. Clone the whole repo into your new workspace catkin_ws.
-- `git clone https://github.com/lluma/gazebo_ros_env.git`
+(If you have had created a workspace please skip the * instructions)
+- `cd ~/${YOUR_WORKSPACE}` 
+- *`mkdir catkin_ws && cd catkin_ws && mkdir src`
+- `git clone https://github.com/lluma/gazebo_ros_env_ver2.git`
+- `cp gazebo_ros_env_ver2/ src/`
 
-4. Finally, run make with the workspace. 
+3. Install some depended libraries for ros-control, python-ros, IK Fast(kinematics), control_msgs, control_tool
+- `sudo apt-get install ros-kinetic-ros-control ros-kinetic-ros-controllers`
+- `sudo apt install python-rosinstall python-rosinstall-generator python-wstool build-essential`
+- `sudo apt-get install ros-kinetic-moveit-kinematics`
+- `sudo apt-get install ros-kinetic-control-msgs`
+- `sudo apt-get install ros-kinetic-control-tool`
+- If you have any package non-install error please try `sudo apt-get install ros-kinetic-${PACKAGE NAME}`. Also remember that the `_` character should replace by `-` in package name. 
+
+4. Finally, run make with the workspace at /${YOUR_WORKSPACE}/
 - `source /opt/ros/kinetic/setup.bash && catkin_make`
-
-#### If you've already had the environment to ROS, please feel free to follow the instructions below.  
-1. Go to the workspace.
-- `cd ~/catkin_ws`.
-
-2. Then ensure that your environment with base is sourced. If not, please do `source ~/catkin_ws/devel/setup.bash`. 
 
 ### Run some tests.
 #### Run the gazebo with our testing launch files.
@@ -146,3 +149,4 @@ You can input `open` and `close` commands to test gripper open and close actions
 
 #### Some error reduction.
 If you have any error when running the above commands, please try `sudo apt-get update && sudo apt-get upgrade` first.
+Or `sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654` to fresh the apt-get key.
