@@ -315,23 +315,27 @@
     
     <property name="gripper_joint_x" value="0" />
     <property name="gripper_joint_y" value="0" />
-    <property name="gripper_joint_z" value="0.058" />
+    <property name="gripper_joint_z" value="0.15" />
     
     <property name="gripper_roll" value="0" />
-    <property name="gripper_pitch" value="${-pi/2}" />
-    <property name="gripper_yaw" value="${-pi/2}" />
+    <property name="gripper_pitch" value="${pi}" />
+    <property name="gripper_yaw" value="0" />
     
-    <property name="finger_bias_x" value="-0.07285" />
-    <property name="finger_bias_y" value="0.005" />
-    <property name="finger_bias_z" value="0.068" />
+    <property name="finger_roll" value="${pi}" />
+    <property name="finger_pitch" value="0" />
+    <property name="finger_yaw" value="0" />
     
-    <property name="finger_r_joint_x" value="${finger_bias_x+0.07285}" />
-    <property name="finger_r_joint_y" value="${finger_bias_y+0}" />
-    <property name="finger_r_joint_z" value="${finger_bias_z+0.0050143}" />
+    <property name="finger_bias_x" value="0.0" />
+    <property name="finger_bias_y" value="0.0015" />
+    <property name="finger_bias_z" value="0.013" />
     
-    <property name="finger_l_joint_x" value="${finger_bias_x+0.07285}" />
-    <property name="finger_l_joint_y" value="${finger_bias_y+0}" />
-    <property name="finger_l_joint_z" value="${finger_bias_z+0.0050143}" />
+    <property name="finger_r_joint_x" value="${finger_bias_x-0.0105}" />
+    <property name="finger_r_joint_y" value="${finger_bias_y+0.0}" />
+    <property name="finger_r_joint_z" value="${finger_bias_z+0.0}" />
+    
+    <property name="finger_l_joint_x" value="${finger_bias_x+0.0105}" />
+    <property name="finger_l_joint_y" value="${finger_bias_y+0.0}" />
+    <property name="finger_l_joint_z" value="${finger_bias_z+0.0}" />
     
     <link name="${prefix}gripper_link">
         <inertial>
@@ -342,7 +346,7 @@
         <visual>
             <origin rpy="${gripper_roll} ${gripper_pitch} ${gripper_yaw}" xyz="0 0 0"/>
             <geometry>
-                <mesh filename="package://tm_description/meshes/gripper/gripper_link.STL"/>
+                <mesh filename="package://tm_description/meshes/toyo_gripper/Gripper.STL" scale="0.01 0.01 0.01"/>
             </geometry>
             <material name="">
                 <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1"/>
@@ -351,7 +355,7 @@
         <collision>
             <origin rpy="${gripper_roll} ${gripper_pitch} ${gripper_yaw}" xyz="0 0 0"/>
             <geometry>
-                <mesh filename="package://tm_description/meshes/gripper/gripper_link.STL"/>
+                <mesh filename="package://tm_description/meshes/toyo_gripper/Gripper.STL" scale="0.01 0.01 0.01"/>
             </geometry>
         </collision>
     </link>
@@ -370,18 +374,18 @@
             <inertia ixx="6.74016278931418E-07" ixy="-2.36459038775023E-07" ixz="3.1480125304693E-09" iyy="3.10966297287339E-06" iyz="1.19271018871704E-10" izz="2.77935600332309E-06"/>
         </inertial>
         <visual>
-            <origin rpy="${gripper_roll} ${gripper_pitch} ${gripper_yaw}" xyz="0 0 0"/>
+            <origin rpy="${finger_roll} ${finger_pitch} ${finger_yaw}" xyz="0 0 0"/>
             <geometry>
-                <mesh filename="package://tm_description/meshes/gripper/finger_r.STL"/>
+                <mesh filename="package://tm_description/meshes/toyo_gripper/finger_r.STL" scale="0.01 0.01 0.01"/>
             </geometry>
             <material name="">
                 <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1"/>
             </material>
         </visual>
         <collision>
-            <origin rpy="${gripper_roll} ${gripper_pitch} ${gripper_yaw}" xyz="0 0 0"/>
+            <origin rpy="${finger_roll} ${finger_pitch} ${finger_yaw}" xyz="0 0 0"/>
             <geometry>
-                <mesh filename="package://tm_description/meshes/gripper/finger_r.STL"/>
+                <mesh filename="package://tm_description/meshes/toyo_gripper/finger_r.STL" scale="0.01 0.01 0.01"/>
             </geometry>
         </collision>
     </link>
@@ -401,18 +405,18 @@
             <inertia ixx="6.74017180959932E-07" ixy="2.3646368440071E-07" ixz="3.14801230297432E-09" iyy="3.10966207084492E-06" iyz="-1.19277023229564E-10" izz="2.77935600332313E-06"/>
         </inertial>
         <visual>
-            <origin rpy="${gripper_roll} ${gripper_pitch} ${gripper_yaw}" xyz="0 0 0"/>
+            <origin rpy="${finger_roll} ${finger_pitch} ${finger_yaw}" xyz="0 0 0"/>
             <geometry>
-                <mesh filename="package://tm_description/meshes/gripper/finger_l.STL"/>
+                <mesh filename="package://tm_description/meshes/toyo_gripper/finger_l.STL" scale="0.01 0.01 0.01"/>
             </geometry>
             <material name="">
                 <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1"/>
             </material>
         </visual>
         <collision>
-            <origin rpy="${gripper_roll} ${gripper_pitch} ${gripper_yaw}" xyz="0 0 0"/>
+            <origin rpy="${finger_roll} ${finger_pitch} ${finger_yaw}" xyz="0 0 0"/>
             <geometry>
-                <mesh filename="package://tm_description/meshes/gripper/finger_l.STL"/>
+                <mesh filename="package://tm_description/meshes/toyo_gripper/finger_l.STL" scale="0.01 0.01 0.01"/>
             </geometry>
         </collision>
     </link>
@@ -476,7 +480,7 @@
         <visual>
             <origin rpy="0 0 0" xyz="0 0 0" />
             <geometry>
-                <mesh filename="package://tm_description/meshes/panel.STL" />
+                <mesh filename="package://tm_description/meshes/plate.STL" />
             </geometry>
             <material name="">
                 <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
@@ -485,7 +489,7 @@
         <collision>
             <origin rpy="0 0 0" xyz="0 0 0"/>
             <geometry>
-                <mesh filename="package://tm_description/meshes/panel.STL"/>
+                <mesh filename="package://tm_description/meshes/plate.STL"/>
             </geometry>
         </collision>
     </link>
