@@ -1,7 +1,7 @@
 #ifndef TM_GAZEBO_H
 #define TM_GAZEBO_H
 
-#define GRIPPER_OPEN_POS 0.03
+#define GRIPPER_OPEN_POS 0.01
 #define GRIPPER_CLOSE_POS 0.0
 
 #include <ros/ros.h>
